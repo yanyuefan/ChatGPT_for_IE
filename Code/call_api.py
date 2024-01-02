@@ -5,7 +5,7 @@ import os
 from tqdm import tqdm
 import argparse 
 
-openai.api_key = ""
+openai.api_key = "sk-QeKxddTyC2GfSeVMAc73450fF841435e9a5aDaF2EdE82348"
 result_dir = './Output'
 
 
