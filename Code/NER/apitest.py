@@ -21,15 +21,15 @@ client = OpenAI(
     api_key = "sk-QeKxddTyC2GfSeVMAc73450fF841435e9a5aDaF2EdE82348",
     base_url = "https://www.plus7.plus/v1"
 )
-
-ner_conll_path = "./prompts.json"
+dataset_path = './ACE05/'
+ner_path = "prompts.json"
 cnt = 0
 data = list()
 max_attempts = 5  # 设置最大尝试次数
 
 
-with open(ner_conll_path, "r") as file:
-    content = json.load(file)[:3]
+with open(dataset_path+ner_path, "r") as file:
+    content = json.load(file)
     bar = tqdm(content)
 
     for line in bar:
@@ -75,7 +75,7 @@ with open(ner_conll_path, "r") as file:
             
 OutputPath = "./"
 
-Datasets_name = "CONLL2003"
+Datasets_name = "ACE05"
 E_Setting = "0shot"
 Process_name = "Origin"
 
