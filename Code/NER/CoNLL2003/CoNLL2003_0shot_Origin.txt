@@ -1,0 +1,1 @@
+CoNLL2003+0shot+Origin all entity num is 5532, TP is 4128, FN is 676. precise is 0.7681, recall is 0.8593, F1 is 0.8112
