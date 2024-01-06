@@ -33,3 +33,4 @@ Code/NER/FewNERD/supervised/train.txt
 Code/NER/Wnut17/emerging.test.annotated
 Code/NER/Wnut17/emerging.dev.conll
 Code/NER/Wnut17/wnut17train.conll
+Code/NER/FewNERD/supervised/processed_FewNERD_test_sup_croase.txt
