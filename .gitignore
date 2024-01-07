@@ -34,3 +34,14 @@ Code/NER/Wnut17/emerging.test.annotated
 Code/NER/Wnut17/emerging.dev.conll
 Code/NER/Wnut17/wnut17train.conll
 Code/NER/FewNERD/supervised/processed_FewNERD_test_sup_croase.txt
+Code/NER/ACE05/prompts_bu.json
+Code/NER/ACE05_0shot_E_With_Diff_Conf.json
+Code/NER/CoNLL2003/prompts_wd.json
+Code/NER/confidence.txt
+Code/NER/FewNERD/supervised/processed_FewNERD_test_sup_fine.txt
+Code/NER/test.json
+Code/NER/ACE05_0shot_E_With_Diff_Conf.json
+Code/NER/ACE05_0shot_E_With_Diff_Conf.json
+Code/NER/CoNLL2003_0shot_E_With_Diff_Conf.json
+Code/NER/ACE05_0shot_E_With_Diff_Conf.json
+Code/NER/ACE05_0shot_E_With_Diff_Conf.json

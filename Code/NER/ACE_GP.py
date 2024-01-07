@@ -1,9 +1,12 @@
 import json
 
-dataset_path = "./ACE05/"
-ner_ace_path = dataset_path+"processed_ace_test.txt"
+Datasets_name = "CoNLL2003"
 
-id2label = ['ORG', 'PER', 'GPE', 'LOC', 'FAC', 'VEH', 'WEA']
+dataset_path = "./CoNLL2003/"
+ner_ace_path = dataset_path+"processed_conll_test.txt"
+
+# id2label = ['ORG', 'PER', 'GPE', 'LOC', 'FAC', 'VEH', 'WEA']
+id2label = ['PER', 'LOC', 'ORG', 'MISC']
 label2id = { l:i for i, l in enumerate(id2label) }
 
 def get_truth(tokens, truth):

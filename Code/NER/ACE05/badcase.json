@@ -1,0 +1,19 @@
+{"ent_idx": 186,
+        "sentIdx": "183",
+        "sentence": "It lies just 12 miles from Baghdad and will be a key forward base for U.S. troops as they prepare for a push on the capital .",
+        "GroundTruth": {
+            "It": "FAC",
+            "Baghdad": "GPE",
+            "a key forward base for U.S. troops": "FAC",
+            "they": "PER",
+            "the capital": "GPE"
+        },
+        "ChatGPTOutput": {
+            "Baghdad": "GPE",
+            "U.S.": "GPE"
+        },
+        "EntityMention": "Baghdad",
+        "ChatGPT CConf": 100,
+        "ChatGPT CDiff": 2,
+        "ChatGPT CDiff Reason": "The entity 'Baghdad' is explicitly mentioned in the sentence and can be easily identified as a geopolitical entity (GPE) based on its context."
+}
