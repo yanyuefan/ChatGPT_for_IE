@@ -7,7 +7,7 @@ Dataset_Path = "./FewNERD/supervised/"
 
 File_Name = Dataset_Path+File_Name
 
-print('-'*20)
+print('-'*80)
 print(f'要处理的文件为：{File_Name}')
 
 ### 2	Nadim Ladki	B-PER I-PER

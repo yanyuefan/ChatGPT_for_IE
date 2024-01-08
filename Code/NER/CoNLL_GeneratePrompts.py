@@ -3,6 +3,7 @@ import json
 ner_conll_path = "./processed_conll_test.txt"
 
 id2label = ["PER", "LOC", "ORG", "MISC"]
+
 label2id = { l:i for i, l in enumerate(id2label) }
 
 def get_truth(tokens, truth):

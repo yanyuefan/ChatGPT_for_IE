@@ -1,12 +1,13 @@
 import json
 
-Datasets_name = "CoNLL2003"
+Datasets_name = "Wnut17"
 
-dataset_path = "./CoNLL2003/"
-ner_ace_path = dataset_path+"processed_conll_test.txt"
+dataset_path = "./{}/".format(Datasets_name)
+ner_ace_path = dataset_path+"processed_{}_test.txt".format(Datasets_name)
 
 # id2label = ['ORG', 'PER', 'GPE', 'LOC', 'FAC', 'VEH', 'WEA']
-id2label = ['PER', 'LOC', 'ORG', 'MISC']
+# id2label = ['PER', 'LOC', 'ORG', 'MISC']
+id2label = ['corporation', 'creative-work', 'group', 'location', 'person', 'product']
 label2id = { l:i for i, l in enumerate(id2label) }
 
 def get_truth(tokens, truth):
@@ -34,7 +35,7 @@ def get_truth(tokens, truth):
     return token_type_dict
 
 data = list()
-for line in map(lambda x: x.strip().split("\t"), open(ner_ace_path, "r").readlines()):
+for line in map(lambda x: x.strip().split("\t"), open(ner_ace_path, "r", encoding='utf-8').readlines()):
     # 1. Raw data infomation
     sentid = line[0]
     sentence = line[1]
@@ -43,7 +44,8 @@ for line in map(lambda x: x.strip().split("\t"), open(ner_ace_path, "r").readlin
     # 2. Generate Prompt
     close_pred = "Given label set: %s\nText: %s\nQuestion: Please extract the named entity from the given text. Based on the given label set, provide the answer in the format: [{\"Entity Name\": \"Entity Label\"}] without any additional things including your explanations or notes." % (id2label, sentence)
     close_conf = "Question: How confident you are in making this judgment, giving it 0 to 100 percent in json format like { \"Confidence\": How confident in your mind } without any additional things, including your notes and explanations!"
-    close_diff = "Question: On a scale of 1 to 10, how difficult do you find this instance for the named entity recognation task? Please rate the difficulty level of the instance you were assigned. Use a scale where 1 is extremely easy and 10 is extremely difficult. Provide your rating in the format: { \"Difficulty\": Your rating here, \"Reason\": the factors that influenced your decision to assign this specific score to the instance's difficulty}, without any additional things!"
+    close_diff = "Question: On a scale of 1 to 10, how difficult do you find this instance for the named entity recognation task? Please rate the difficulty level of the instance you were assigned. Use a scale where 1 is extremely easy and 10 is extremely difficult, with only whole numbers (integers) to be used for rating. Provide your rating in the format: { \"Difficulty\": Your rating here}, without any additional things!"
+    # close_diff = "Question: On a scale of 1 to 10, how difficult do you find this instance for the named entity recognation task? Please rate the difficulty level of the instance you were assigned. Use a scale where 1 is extremely easy and 10 is extremely difficult. Provide your rating in the format: { \"Difficulty\": Your rating here, \"Reason\": the factors that influenced your decision to assign this specific score to the instance's difficulty}, without any additional things!"
 
     # close_reason = "Question: Tell me the reason why does the entity belong to this type?"
     data.append({

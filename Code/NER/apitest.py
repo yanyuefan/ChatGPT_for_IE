@@ -24,6 +24,7 @@ def call_fee():
 #20240107 {"object":"list","total_usage":142.387}
 #         {"object":"list","total_usage":250.7304}
 #         {"object":"list","total_usage":254.312}
+#20240108 {"object":"list","total_usage":749.2224}
 
 from openai import OpenAI
 
@@ -126,8 +127,9 @@ def call_api(outfile_name, Datasets_name, label_set, max_attempts = 5):
 
                             "EntityMention": entity,
                             "ChatGPT CConf": close_conf_chatgpt_ans,
-                            "ChatGPT CDiff": close_diff_chatgpt_ans['Difficulty'],
-                            "ChatGPT CDiff Reason": close_diff_chatgpt_ans['Reason'] 
+                            "ChatGPT CDiff": close_diff_chatgpt_ans
+                            # "ChatGPT CDiff": close_diff_chatgpt_ans['Difficulty'],
+                            # "ChatGPT CDiff Reason": close_diff_chatgpt_ans['Reason'] 
                             }
                     cnt += 1
                     data.append(answer)
@@ -135,9 +137,10 @@ def call_api(outfile_name, Datasets_name, label_set, max_attempts = 5):
             o_f.write(json.dumps(data, indent=4))
 
 if __name__ == "__main__":
-    Datasets_name = "CoNLL2003"
-    label_set = ['PER', 'LOC', 'ORG', 'MISC']
+    Datasets_name = "Wnut17"
+    # label_set = ['PER', 'LOC', 'ORG', 'MISC']
     # label_set = ['ORG', 'PER', 'GPE', 'LOC', 'FAC', 'VEH', 'WEA']
+    label_set = ['corporation', 'creative-work', 'group', 'location', 'person', 'product']
 
     OutputPath = "./"
     E_Setting = "0shot"
