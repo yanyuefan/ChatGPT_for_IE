@@ -8,15 +8,9 @@ from scipy.stats import gaussian_kde
 
 # 假设这是你的数据
 
-def get_data():
-
-    Datasets_name = "CoNLL2003"
+def get_data(Datasets_name, E_Setting, Process_name, OutputPath):
+   
     dataset_path = './{}/'.format(Datasets_name)
-
-    OutputPath = "./"
-    E_Setting = "0shot"
-    Process_name = "E_With_Diff_Conf"
-
     outfile_name = OutputPath+Datasets_name+"_"+E_Setting+"_"+Process_name+".json"
 
     confidence = list()
@@ -26,16 +20,17 @@ def get_data():
         data = json.loads(file.read())
         for instance in data:
             confidence.append(instance['ChatGPT CConf'])
-            difficulty.append(instance['ChatGPT CDiff'])
+            difficulty.append(instance['ChatGPT CDiff']['Difficulty'])
 
     assert len(confidence)==len(difficulty),"length is not equal"
     print(f'instances length is {len(confidence)}')
     return confidence,difficulty
 
-def scatter (df):
+def scatter (df, dataset_name):
     # 计算密度
     x = df['difficulty']
     y = df['confidence']
+
     xy = np.vstack([x,y])
     z = gaussian_kde(xy)(xy)
 
@@ -43,7 +38,7 @@ def scatter (df):
     idx = z.argsort()
     x, y, z = x[idx], y[idx], z[idx]
 
-    ax = plt.subplots(figsize=(12, 8))
+    _, ax = plt.subplots(figsize=(12, 8))
     # 创建散点图，并且保存引用scatter，用于创建颜色条
     scatter = ax.scatter(x, y, c=z, s=70, alpha=0.1)
 
@@ -53,7 +48,7 @@ def scatter (df):
     # 设置标签和标题
     ax.set_xlabel('difficulty')
     ax.set_ylabel('confidence')
-    plt.title('Scatter plot with density color coding')
+    plt.title(f'The Confidence and Difficulty Distribution for the {dataset_name} Dataset')
     plt.show()
 
 def heatmap(pd):
@@ -94,12 +89,17 @@ def kdeplot(df):
     plt.show()
 
 if __name__ == "__main__":
-    confidence, difficulty = get_data()
+
+    OutputPath = "./"
+    dataset_name = "Wnut17"
+    E_Setting = "0shot"
+    Process_name = "E_With_Diff_Conf"
+
+    confidence, difficulty = get_data(dataset_name, E_Setting, Process_name, OutputPath)
     
     df = pd.DataFrame({'difficulty': difficulty, 'confidence': confidence})
     df['difficulty'] = pd.to_numeric(df['difficulty'], errors='coerce')
     df['confidence'] = pd.to_numeric(df['confidence'], errors='coerce')
-
     df = df.dropna()
 
-    heatmap(pd)
+    scatter(df, dataset_name)

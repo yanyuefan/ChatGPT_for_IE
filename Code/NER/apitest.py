@@ -25,6 +25,7 @@ def call_fee():
 #         {"object":"list","total_usage":250.7304}
 #         {"object":"list","total_usage":254.312}
 #20240108 {"object":"list","total_usage":749.2224}
+        # {"object":"list","total_usage":873.4252}
 
 from openai import OpenAI
 
@@ -148,5 +149,5 @@ if __name__ == "__main__":
     outfile_name = OutputPath+Datasets_name+"_"+E_Setting+"_"+Process_name+".json"
 
     max_attempts = 5
-    call_api(outfile_name=outfile_name, Datasets_name=Datasets_name, label_set=label_set)
-    # call_fee()
+    # call_api(outfile_name=outfile_name, Datasets_name=Datasets_name, label_set=label_set)
+    call_fee()
